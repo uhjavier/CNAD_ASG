@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'car-sharing-api'
+    static_configs:
+      - targets: ['api1:8080', 'api2:8080'] 
