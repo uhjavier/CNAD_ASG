@@ -1,0 +1,198 @@
+{
+	"info": {
+		"name": "Car Sharing System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"url": "http://localhost:8090/api/register",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\",\n    \"name\": \"John Doe\",\n    \"phone\": \"+6281234567890\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"url": "http://localhost:8090/api/login",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Vehicles",
+			"item": [
+				{
+					"name": "Create Vehicle",
+					"request": {
+						"method": "POST",
+						"url": "http://localhost:8090/api/vehicles",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model_name\": \"Civic\",\n    \"brand\": \"Honda\",\n    \"year\": 2022,\n    \"license_plate\": \"B1234CD\",\n    \"color\": \"Black\",\n    \"price_per_hour\": 100000,\n    \"location\": \"Jakarta\",\n    \"type\": \"sedan\"\n}"
+						}
+					}
+				},
+				{
+					"name": "List All Vehicles",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost:8090/api/vehicles",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						]
+					}
+				},
+				{
+					"name": "Get Available Vehicles",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost:8090/api/vehicles/available",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						]
+					}
+				},
+				{
+					"name": "Update Vehicle Status",
+					"request": {
+						"method": "PATCH",
+						"url": "http://localhost:8090/api/vehicles/1/status",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"maintenance\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"url": "http://localhost:8090/api/bookings",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vehicle_id\": 1,\n    \"start_time\": \"2024-12-06T14:00:00Z\",\n    \"end_time\": \"2024-12-06T16:00:00Z\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Get Booking History",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost:8090/api/bookings/history",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Billing",
+			"item": [
+				{
+					"name": "Get Billing Estimate",
+					"request": {
+						"method": "POST",
+						"url": "http://localhost:8090/api/billing/estimate",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vehicle_id\": 1,\n    \"start_time\": \"2024-12-06T14:00:00Z\",\n    \"end_time\": \"2024-12-06T16:00:00Z\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Calculate Booking Cost",
+					"request": {
+						"method": "POST",
+						"url": "http://localhost:8090/api/billing/calculate/1",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
+} 
